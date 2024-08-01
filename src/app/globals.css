@@ -1,0 +1,140 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+body{
+  background-color: #18181B !important;
+  color: aliceblue;
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
+.animated-background {
+  transition: background-color 0.5s;
+}
+
+.animated-background.active {
+  background-color: var(--primary-color);
+}
+
+
+
+.bg-gray-900 {
+  background-color: #1a202c;
+}
+
+.bg-gray-700 {
+  background-color: #4a5568;
+}
+
+.bg-blue-600 {
+  background-color: #3182ce;
+}
+
+.bg-green-600 {
+  background-color: #38a169;
+}
+
+.bg-red-600 {
+  background-color: #e53e3e;
+}
+main {
+  width: min(1200px, 90vw);
+  margin: auto;
+}
+
+.slider {
+  width: 100%;
+  height: var(--height);
+  overflow: hidden;
+  mask-image: linear-gradient(
+    to right,
+    transparent,
+    #000 10% 90%,
+    transparent
+  );
+  position: relative;
+}
+
+.slider .list {
+  display: flex;
+  width: calc(var(--item-width) * var(--quantity));
+  height: var(--item-height);
+  position: absolute;
+  top: 0;
+  left: 0;
+  animation: autoRun 10s linear infinite;
+}
+
+.slider .list .item {
+  width: var(--item-width);
+  height: var(--item-height);
+  box-sizing: border-box;
+  margin-right: var(--gap);
+  position: relative; /* Ensure correct positioning */
+}
+
+.slider .list .box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding:5px; /* Increased padding for better content spacing */
+  background-color: #18181B;
+  border: 2px solid #313134;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  width: calc(var(--item-width) - var(--gap)); /* Adjust width to fit inside item */
+  height: calc(var(--item-height) - 20px); /* Adjust height to fit padding */
+  box-sizing: border-box; /* Include padding and border in width and height */
+  overflow: visible; /* Allow content to be visible */
+}
+
+.slider .list .box h1 {
+  margin: 0;
+  font-size:2rem;
+  color: #d6d6d6;
+  font-weight: bold;
+  font-size:10px;
+}
+
+.slider .list .box p {
+  margin:15px 0 0;
+  color: #a7a7a7;
+  overflow: visible; 
+  font-size:10px;
+  /* Ensure text is visible */
+}
+
+@keyframes autoRun {
+  from {
+    left: 0;
+  }
+  to {
+    left: calc(var(--item-width) * -1);
+  }
+}
+
+.slider:hover .list {
+  animation-play-state: paused !important;
+}
+
+.slider:hover .item {
+  filter: grayscale(1);
+}
+
+.slider .item:hover {
+  filter: grayscale(0);
+}
+
+.slider[reverse="true"] .list {
+  animation: reversePlay 10s linear infinite;
+}
+
+@keyframes reversePlay {
+  from {
+    left: calc(var(--item-width) * -1);
+  }
+  to {
+    left: 0;
+  }
+}
